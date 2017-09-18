@@ -13,34 +13,43 @@
     s(r[o]);
   }return s;
 })({ 1: [function (require, module, exports) {
+    
+
+    var URL = "https://ivu7tuzx4f.execute-api.us-west-1.amazonaws.com/dev/todos";
+
+    // Create an empty Headers instance
+    var headers = new Headers();
+
+
+    var request = new Request(URL, {
+      method: 'GET', 
+      mode: 'no-cors', 
+      headers: new Headers({
+        'Content-Type': 'text/plain'
+      })
+    });
+
+    fetch(request).then(function(response) { 
+      // Convert to JSON
+      console.log(response);
+      return response;
+    }).then(function(j) {
+      // Yay, `j` is a JavaScript object
+      console.log(j); 
+    });
+
     // quotes are stored in an array of objects
+
+
+
     var quotes = [{
-      "attrib": "Steve Jobs",
-      "quote": "Design is not just what it looks like and feels like. Design is how it works."
-    }, {
-      "attrib": "Steve Jobs",
-      "quote": "Innovation distinguishes between a leader and a follower."
-    }, {
-      "attrib": "Albert Einstein",
-      "quote": "Reality is merely an illusion, albeit a very persistent one."
-    }, {
-      "attrib": "Albert Einstein",
-      "quote": "If you can't explain it simply, you don't understand it well enough."
-    }, {
-      "attrib": "Albert Einstein",
-      "quote": "Strive not to be a success, but rather to be of value."
-    }, {
-      "attrib": "Steve Jobs",
-      "quote": "Your time is limited, so don’t waste it living someone else’s life."
-    }, {
-      "attrib": "Bill Gates",
-      "quote": "Success is a lousy teacher. It seduces smart people into thinking they can't lose."
-    }, {
-      "attrib": "Albert Einstein",
-      "quote": "Science without religion is lame, religion without science is blind."
-    }, {
-      "attrib": "Henry Ford",
-      "quote": "Whether you think you can or you think you can’t, you’re right."
+        "attrib": "Steve Jobs",
+        "quote": "Design is not just what it looks like and feels like. Design is how it works."
+      
+    },{
+        "attrib": "Bob Jobs",
+        "quote": "Hello World."
+      
     }];
 
     // function to load and display a new quote
@@ -66,6 +75,6 @@
     // Generates a new quote every x seconds
     setInterval(function(){ 
       newQuote();
-    }, 8000);
+    }, 1000);
 
   }, {}] }, {}, [1]);
