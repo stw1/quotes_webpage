@@ -1,0 +1,43 @@
+html, body {
+    height: 100%;
+}
+body {
+    margin: 0;
+}
+.flex-container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5; 
+    position:relative;
+}
+.row {
+    width: auto;
+    border: 0px;
+}
+.flex-quote {
+    height: 20px;
+    margin: 10px;
+    line-height: 20px;
+    color: azure;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+.flex-author {
+    height: 20px;
+    margin: 10px;
+    line-height: 30px;
+    color: azure;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+}
