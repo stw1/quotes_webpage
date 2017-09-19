@@ -16,65 +16,51 @@
     
 
     var URL = "https://ivu7tuzx4f.execute-api.us-west-1.amazonaws.com/dev/todos";
-
-    // Create an empty Headers instance
-    var headers = new Headers();
-
+    var quotes = [];
 
     var request = new Request(URL, {
       method: 'GET', 
-      mode: 'no-cors', 
       headers: new Headers({
-        'Content-Type': 'text/plain'
+        'Content-Type': 'application/json'
       })
     });
 
     fetch(request).then(function(response) { 
       // Convert to JSON
-      console.log(response);
-      return response;
+
+      return response.json();
     }).then(function(j) {
       // Yay, `j` is a JavaScript object
-      console.log(j); 
-    });
 
-    // quotes are stored in an array of objects
+      // console.log(j[0].author + j[0].quote);
+      quotes = j;
+      console.log(quotes);
 
+          // function to load and display a new quote
+      function newQuote() {
+        var quoteID = Math.floor(Math.random() * quotes.length);
+        $("#quote").html(quotes[quoteID].quote);
+        $("#attrib").html(quotes[quoteID].author);
+      }
 
-
-    var quotes = [{
-        "attrib": "Steve Jobs",
-        "quote": "Design is not just what it looks like and feels like. Design is how it works."
-      
-    },{
-        "attrib": "Bob Jobs",
-        "quote": "Hello World."
-      
-    }];
-
-    // function to load and display a new quote
-    function newQuote() {
-      var quoteID = Math.floor(Math.random() * quotes.length);
-      $("#quote").html(quotes[quoteID].quote);
-      $("#attrib").html(quotes[quoteID].attrib);
-      $("#twitterButton").attr("href", "https://twitter.com/intent/tweet?text=" + quotes[quoteID].quote + " -" + quotes[quoteID].attrib);
-    }
-
-    // wait for page load before displaying content
-    $(document).ready(function () {
-      // load an initial quote
-      newQuote();
-
-      // retrieve a new quote when the button is clicked
-    $("#generateButton").on("click", function () {
+      // wait for page load before displaying content
+      $(document).ready(function () {
+        // load an initial quote
         newQuote();
+
+        // retrieve a new quote when the button is clicked
+      $("#generateButton").on("click", function () {
+          newQuote();
+        });
       });
+
+
+      // Generates a new quote every x seconds
+      setInterval(function(){ 
+        newQuote();
+      }, 3000);
     });
 
 
-    // Generates a new quote every x seconds
-    setInterval(function(){ 
-      newQuote();
-    }, 1000);
 
   }, {}] }, {}, [1]);
